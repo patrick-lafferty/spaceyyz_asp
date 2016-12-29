@@ -1,0 +1,14 @@
+todo
+*.swp
+dist/
+design
+node_modules/
+eslint_results
+coverage/
+bin/
+obj/
+project.lock.json
+# !node_modules/angular-ui-bootstrap
+# !node_modules/angular-ui-router
+# !node_modules/anymatch
+# !node_modules/bootstrap
