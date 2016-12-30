@@ -1,8 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<environment names="Development">
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
 </head>
 <body>
+	<header>
+		<section>
+			<div class="logoSquircle"></div>
+			<div class="logoSquircle squircle1"></div>
+			<div class="logoSquircle squircle2"></div>
+			<p class="logoTitle">SpaceYYZ</p>
+		</section>
+
+		<span>your one stop shop for Space Operations</span>
+	</header>
+	
+	<nav>
+		<ul>
+			<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+			<li><a asp-controller="Schedule" asp-action="Index">Schedule</a></li>
+		</ul>
+	</nav>
+
 	<div>
 		@RenderBody()
 	</div>

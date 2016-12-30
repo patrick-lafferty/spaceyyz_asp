@@ -30,6 +30,8 @@ namespace SpaceYYZ
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
+			app.UseStaticFiles();
 			
 			app.UseMvc(routes =>
 			{
