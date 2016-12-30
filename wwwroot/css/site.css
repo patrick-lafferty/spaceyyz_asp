@@ -1,3 +1,100 @@
+/* responsive 12 column grid
+ * */
+
+.grid {
+	margin: 40px auto;
+	max-width: 1200px;
+	width: 100%;
+}
+
+.row {
+	width: 100%;
+}
+
+.col-1 {
+	width: 8.33%;
+}
+
+.col-2 {
+	width: 16.66%;
+}
+
+.col-3 {
+	width: 25%;
+}
+
+.col-4 {
+	width: 33.33%;
+}
+
+.col-5 {
+	width: 41.66%;
+}
+
+.col-6 {
+	width: 50%;
+}
+
+.col-7 {
+	width: 58.33%;
+}
+
+.col-8 {
+	width: 66.66%;
+}
+
+.col-9 {
+	width: 75%;
+}
+
+.col-10 {
+	width: 83.33%;
+}
+
+.col-11 {
+	width: 91.66%;
+}
+
+.col-12 {
+	width: 100%;
+}
+
+/* forms
+ * */
+
+form {
+	margin-left: 20px;
+}
+
+form > p {
+	font-size: 18pt;
+}
+
+.form-group {
+	display: flex;
+	width: 100%;
+}
+
+.form-group > label {
+	flex: 0 0 auto;
+}
+
+.form-group:not(:last-child) {
+	margin-bottom: 10px;
+}
+
+label {
+	display: inline-block;
+	margin-right: 20px;
+	text-align: right;
+}
+
+input, select {
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-right: 5px;
+}
+
 /* main header elements
  * */
 
@@ -8,6 +105,12 @@ header {
 
 header > span {
 	font-style: italic;
+}
+
+html, body {
+	height: 100%;
+	color: rgba(255, 255, 255, 0.8);
+	background-color: #354545;
 }
 
 .logoTitle {
@@ -53,10 +156,45 @@ header > span {
 /* nav elements
  * */
 nav > ul {
-	list-style: none;
 	display: flex;
+	list-style: none;
+	padding: 0px;
 }
 
 nav > ul > li:not(:last-child) { 
-	margin-right: 10px;
+	/*margin-right: 10px;*/
+}
+
+nav a {
+	border: 3px outset #19b3f3;
+	border-left: none;
+	border-right: none;
+	color: #19b3fe;
+	font-size: 20pt;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+/* RenderBody() view
+ * */
+.view {
+	margin-left: 50px;
+}
+
+/* Schedule/NewFlight
+ * */
+
+.mission > section {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.mission > section > form {
+	flex: 1 1 auto;
+	min-width: 380px;
+}
+
+.mission > p {
+	flex: 1 1 auto;
 }
