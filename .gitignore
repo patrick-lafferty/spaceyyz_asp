@@ -8,6 +8,7 @@ coverage/
 bin/
 obj/
 project.lock.json
+appsettings.json
 # !node_modules/angular-ui-bootstrap
 # !node_modules/angular-ui-router
 # !node_modules/anymatch

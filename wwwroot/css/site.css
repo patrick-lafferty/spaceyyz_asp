@@ -59,6 +59,67 @@
 	width: 100%;
 }
 
+.offset-col-1 {
+	left: 8.33%;
+	position: relative;
+}
+
+.offset-col-2 {
+	left: 16.66%;
+	position: relative;
+}
+
+.offset-col-3 {
+	left: 25%;
+	position: relative;
+}
+
+.offset-col-4 {
+	left: 33.33%;
+	position: relative;
+}
+
+.offset-col-5 {
+	left: 41.66%;
+	position: relative;
+}
+
+.offset-col-6 {
+	left: 50%;
+	position: relative;
+}
+
+.offset-col-7 {
+	left: 58.33%;
+	position: relative;
+}
+
+.offset-col-8 {
+	left: 66.66%;
+	position: relative;
+}
+
+.offset-col-9 {
+	left: 75%;
+	position: relative;
+}
+
+.offset-col-10 {
+	left: 83.33%;
+	position: relative;
+}
+
+.offset-col-11 {
+	left: 91.66%;
+	position: relative;
+}
+
+.offset-col-12 {
+	left: 100%;
+	position: relative;
+}
+
+
 /* forms
  * */
 
@@ -85,11 +146,11 @@ form > p {
 
 label {
 	display: inline-block;
-	margin-right: 20px;
+	/*margin-right: 20px;*/
 	text-align: right;
 }
 
-input, select {
+input, select, button {
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-right: 5px;

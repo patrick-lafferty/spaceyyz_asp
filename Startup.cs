@@ -29,9 +29,14 @@ namespace SpaceYYZ
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddEntityFrameworkSqlServer()
+			
+			services.AddEntityFrameworkNpgsql()
 				.AddDbContext<ApplicationUserContext>(options =>
-						options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+						options.UseNpgsql(Configuration.GetConnectionString("DefaultConnectionPostgres")));
+
+			/*services.AddEntityFrameworkSqlServer()
+				.AddDbContext<ApplicationUserContext>(options =>
+						options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));*/
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationUserContext>()

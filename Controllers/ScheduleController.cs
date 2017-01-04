@@ -1,8 +1,10 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SpaceYYZ.Controllers
 {
+	[Authorize]
 	public class ScheduleController : Controller
 	{
 		public IActionResult Index()
