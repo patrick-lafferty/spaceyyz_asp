@@ -7,6 +7,7 @@ namespace SpaceYYZ.Controllers
 	{
 		public IActionResult Index()
 		{
+			ViewData["ActiveTab"] = "Home";
 			return View();
 		}
 	}

@@ -1,0 +1,30 @@
+@model RegisterViewModel
+
+<h1>Register</h1>
+<section>
+	<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+		<div class="form-group">
+			<label asp-for="Username" class="col-2"></label>
+			<input type="text" asp-for="Username" class="offset-col-1">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="Email" class="col-2"></label>
+			<input type="text" asp-for="Email" class="offset-col-1">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="Password" class="col-2"></label>
+			<input asp-for="Password" class="offset-col-1"></label>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="PasswordConfirmation" class="col-2"></label>
+			<input asp-for="PasswordConfirmation" class="offset-col-1"></label>
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="offset-col-3 col-2">Register</button>
+		</div>
+	</form>
+</section>

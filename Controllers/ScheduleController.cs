@@ -9,6 +9,7 @@ namespace SpaceYYZ.Controllers
 	{
 		public IActionResult Index()
 		{
+			ViewData["ActiveTab"] = "Schedule";
 			return View();
 		}
 

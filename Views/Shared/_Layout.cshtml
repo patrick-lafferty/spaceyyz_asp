@@ -17,10 +17,15 @@
 		<span>your one stop shop for Space Operations</span>
 	</header>
 	
+	@{
+		Func<string, string> getTabClass = tabname => 
+			ViewData["ActiveTab"] == tabname ? "active-tab" : "inactive-tab";
+	}
+
 	<nav>
 		<ul>
-			<li><a asp-controller="Home" asp-action="Index">Home</a></li>
-			<li><a asp-controller="Schedule" asp-action="Index">Schedule</a></li>
+			<li class=@getTabClass("Home")><a asp-controller="Home" asp-action="Index">Home</a></li>
+			<li class=@getTabClass("Schedule")><a asp-controller="Schedule" asp-action="Index">Schedule</a></li>
 		</ul>
 	</nav>
 

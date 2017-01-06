@@ -236,6 +236,10 @@ nav a {
 	text-decoration: none;
 }
 
+.active-tab {
+	background-color: teal;
+}
+
 /* RenderBody() view
  * */
 .view {
@@ -258,4 +262,10 @@ nav a {
 
 .mission > p {
 	flex: 1 1 auto;
+}
+
+/* links
+ * */
+a {
+	color: #19b3fe;
 }

@@ -49,6 +49,11 @@ namespace SpaceYYZ
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
 			app.UseStaticFiles();
 			app.UseIdentity();
 			
