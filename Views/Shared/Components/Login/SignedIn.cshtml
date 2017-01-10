@@ -1,0 +1,8 @@
+@model SpaceYYZ.Models.ApplicationUser
+
+<section>
+	<p>@Model.UserName</p>
+	<form asp-controller="Account" asp-action="Logout" method="post" class="miniform">
+		<button type="submit">Log out</button>
+	</form>
+</section>

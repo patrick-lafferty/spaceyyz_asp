@@ -112,6 +112,15 @@ namespace SpaceYYZ.Controllers
 			return View(model);
 		}
 
+
+		// POST: /Account/Logout
+		[HttpPost]
+		public async Task<IActionResult> Logout()
+		{
+			await _signInManager.SignOutAsync();
+			return SafeRedirect(null);
+		}
+
 		private IActionResult SafeRedirect(string url)
 		{
 			if (Url.IsLocalUrl(url))

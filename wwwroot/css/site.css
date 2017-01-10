@@ -127,6 +127,10 @@ form {
 	margin-left: 20px;
 }
 
+.miniform {
+	margin-left: 0px;
+}
+
 form > p {
 	font-size: 18pt;
 }
@@ -166,6 +170,7 @@ header {
 
 header > span {
 	font-style: italic;
+	flex: 1 1 auto;
 }
 
 html, body {
