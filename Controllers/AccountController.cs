@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpaceYYZ.Models;
@@ -19,11 +20,31 @@ namespace SpaceYYZ.Controllers
 		public AccountController(
 				UserManager<ApplicationUser> userManager,
 				SignInManager<ApplicationUser> signInManager,
-				ILoggerFactory loggerFactory)
+				ILoggerFactory loggerFactory,
+				RoleManager<IdentityRole> roleManager)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_logger = loggerFactory.CreateLogger<AccountController>();
+			setup(roleManager);
+		}
+
+		private async Task<IdentityResult> createRole(RoleManager<IdentityRole> roleManager, string name)
+		{
+			if (!await roleManager.RoleExistsAsync(name))
+			{
+				var role = new IdentityRole();
+				role.Name = name;
+				return await roleManager.CreateAsync(role);
+			}
+
+			return new IdentityResult();
+		}
+
+		public async void setup(RoleManager<IdentityRole> roleManager)
+		{
+			//await createRole(roleManager, "Administrator");
+			await createRole(roleManager, "Default");
 		}
 
 		// GET: /Account/Login
@@ -92,8 +113,13 @@ namespace SpaceYYZ.Controllers
 					FirstName = "firstname",
 					LastName = "lastname"
 				};
+				
+				//Microsoft.AspNetCore.Identity.Identit
 
 				var result = await _userManager.CreateAsync(user, model.Password);
+
+				//var roleResult = await _userManager.AddToRoleAsync(user, "Administrator");
+				await _userManager.AddToRoleAsync(user, "Default");
 
 				if (result.Succeeded)
 				{
@@ -118,6 +144,20 @@ namespace SpaceYYZ.Controllers
 		public async Task<IActionResult> Logout()
 		{
 			await _signInManager.SignOutAsync();
+			return SafeRedirect(null);
+		}
+
+		// POST: /Account/SetCurrentRole
+		[HttpPost]
+		public async Task<IActionResult> SetCurrentRole(SignedInViewModel model)
+		{
+			if (!string.IsNullOrEmpty(model.CurrentRole))
+			{
+				var user = await _userManager.GetUserAsync(this.User);
+				user.CurrentRole = model.CurrentRole;
+				await _userManager.UpdateAsync(user);
+			}			
+
 			return SafeRedirect(null);
 		}
 

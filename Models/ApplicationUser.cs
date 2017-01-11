@@ -13,5 +13,8 @@ namespace SpaceYYZ.Models
 		[MaxLength(70)]
 		[Required]
 		public string LastName {get; set;}
+
+		[MaxLength(30)]
+		public string CurrentRole {get; set;}
 	}
 }

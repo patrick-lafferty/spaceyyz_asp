@@ -150,7 +150,7 @@ form > p {
 
 label {
 	display: inline-block;
-	/*margin-right: 20px;*/
+	margin-right: 20px;
 	text-align: right;
 }
 

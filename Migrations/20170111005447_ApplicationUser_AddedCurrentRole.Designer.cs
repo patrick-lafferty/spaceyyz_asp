@@ -8,9 +8,10 @@ using SpaceYYZ.Data;
 namespace spaceyyz_asp.Migrations
 {
     [DbContext(typeof(ApplicationUserContext))]
-    partial class ApplicationUserContextModelSnapshot : ModelSnapshot
+    [Migration("20170111005447_ApplicationUser_AddedCurrentRole")]
+    partial class ApplicationUser_AddedCurrentRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)

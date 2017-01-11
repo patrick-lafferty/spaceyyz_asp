@@ -1,7 +1,13 @@
-@model SpaceYYZ.Models.ApplicationUser
+@model SignedInViewModel
 
 <section>
-	<p>@Model.UserName</p>
+	<p>@Model.Username</p>
+	<form asp-controller="Account" asp-action="SetCurrentRole" method="post">
+		<label>Role</label>
+		<select asp-for="CurrentRole" asp-items="Model.AvailableRoles">
+		</select>
+		<button type="submit">Set</button>
+	</form>
 	<form asp-controller="Account" asp-action="Logout" method="post" class="miniform">
 		<button type="submit">Log out</button>
 	</form>

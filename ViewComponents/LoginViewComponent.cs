@@ -1,9 +1,11 @@
+using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 using SpaceYYZ.Models;
+using SpaceYYZ.Models.AccountViewModels;
 
 namespace SpaceYYZ.ViewComponents
 {
@@ -27,7 +29,12 @@ namespace SpaceYYZ.ViewComponents
 		{
 			if (_signInManager.IsSignedIn(this.UserClaimsPrincipal))
 			{
-				return View("SignedIn", await _userManager.GetUserAsync(this.UserClaimsPrincipal));
+			    var user = await _userManager.GetUserAsync(this.UserClaimsPrincipal);
+				var roles = await _userManager.GetRolesAsync(user);
+				
+				var model = new SignedInViewModel(user.UserName, roles) { CurrentRole = user.CurrentRole};
+				
+				return View("SignedIn", model);
 			}
 
 			return View();
