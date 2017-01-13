@@ -1,0 +1,30 @@
+@model IEnumerable<SpaceYYZ.Models.AdministrationViewModels.UserViewModel>
+
+<h1>Users</h1>
+
+<article>
+	<table>
+		<tr>
+			<th>Username</th>
+			<th>First name</th>
+			<th>Last name</ht>
+			<!--<th>Roles</th>-->
+			<th></th>
+		</tr>
+
+		@foreach(var user in Model)
+		{
+			<tr>
+				<td>@user.Username</td>
+				<td>@user.FirstName</td>
+				<td>@user.LastName</td>
+				<!--<td>@user.Roles</td>-->
+				<td>
+					<a asp-action="Details" asp-route-id="@user.Id">View</a> | 
+					<a asp-action="Edit" asp-route-id="@user.Id">Edit</a> |
+					<a asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</table>
+</article>

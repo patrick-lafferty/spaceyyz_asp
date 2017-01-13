@@ -1,0 +1,23 @@
+@model SpaceYYZ.Models.AdministrationViewModels.UserDetailsViewModel
+
+<h1>Viewing @Model.Username</h1>
+<article>
+	<section>
+		<dl>
+			<dt>Name</dt>
+			<dd>@Model.FirstName @Model.LastName</dd>
+
+			<dt>Roles</dt>
+			<dd>
+				<ul>
+					@foreach(var role in @Model.Roles)
+					{
+						<li>@role</li>
+					}
+				</ul>
+			</dd>
+		</dl>
+	</section>
+</article>
+
+

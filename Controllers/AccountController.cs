@@ -151,14 +151,23 @@ namespace SpaceYYZ.Controllers
 		[HttpPost]
 		public async Task<IActionResult> SetCurrentRole(SignedInViewModel model)
 		{
-			if (!string.IsNullOrEmpty(model.CurrentRole))
+			if (ModelState.IsValid)
 			{
-				var user = await _userManager.GetUserAsync(this.User);
-				user.CurrentRole = model.CurrentRole;
-				await _userManager.UpdateAsync(user);
-			}			
+				if (!string.IsNullOrEmpty(model.CurrentRole))
+				{
+					var user = await _userManager.GetUserAsync(this.User);
+					user.CurrentRole = model.CurrentRole;
+					await _userManager.UpdateAsync(user);
+				}			
+			}
 
 			return SafeRedirect(null);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> AccessDenied()
+		{
+			return View();
 		}
 
 		private IActionResult SafeRedirect(string url)

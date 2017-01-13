@@ -1,0 +1,10 @@
+@model SpaceYYZ.Models.AdministrationViewModels.RemoveRoleViewModel
+
+<section>
+	<h1>About to remove role @Model.Role from @Model.Username, are you sure?</h1>
+
+	<form asp-controller="Administration" asp-action="RemoveRole" method="post" asp-route-id="@Model.Id" asp-route-role="@Model.Role">
+		<button type="submit">Remove role</button>
+		 
+	</form>
+</section>
