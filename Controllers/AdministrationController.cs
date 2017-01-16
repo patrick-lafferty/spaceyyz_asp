@@ -110,6 +110,39 @@ namespace SpaceYYZ.Controllers
 			}
 		}
 
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(UserDetailsViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = await _userManager.FindByIdAsync(model.Id);
+				if (user != null)
+				{
+					if (await TryUpdateModelAsync<ApplicationUser>(user, 
+							"",
+							u => u.FirstName, u => u.LastName))
+					{
+						var result = await _userManager.UpdateAsync(user);
+						
+						if (result.Succeeded)
+						{
+							return RedirectToAction("Details", new {id = user.Id});
+						}
+
+					}
+
+				}
+			}
+			else
+			{
+				PrintModelErrors();
+
+			}
+
+			return RedirectToAction("Edit", new {id = model.Id});
+		}
+
 		[HttpGet]
 		public IActionResult RemoveRole(string id, string username, string role)
 		{
@@ -176,14 +209,6 @@ namespace SpaceYYZ.Controllers
 		[HttpPost]
 		public async Task<IActionResult> AddRole(RolesViewModel model)
 		{
-			foreach(var a in ModelState)
-			{
-				foreach(var e in a.Value.Errors)
-				{
-					System.Console.WriteLine(e.ErrorMessage);
-				}
-			}
-
 			if (ModelState.IsValid)
 			{
 				var user = await _userManager.FindByIdAsync(model.Id);
@@ -203,6 +228,16 @@ namespace SpaceYYZ.Controllers
 			return View();
 		}
 
+		private void PrintModelErrors()
+		{
+			foreach(var a in ModelState)
+			{
+				foreach(var e in a.Value.Errors)
+				{
+					System.Console.WriteLine(e.ErrorMessage);
+				}
+			}
+		}
 
 	}
 }
