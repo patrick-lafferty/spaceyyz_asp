@@ -1,0 +1,8 @@
+@model SpaceYYZ.Models.AdministrationViewModels.DeleteUserViewModel
+
+<h1>Are you sure you want to delete user @Model.Username?</h1>
+<section>
+	<form asp-controller="Administration" asp-action="Delete" method="post" asp-route-id="@Model.Id">
+		<button type="submit">Delete</button>
+	</form>
+</section>

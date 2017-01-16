@@ -228,6 +228,50 @@ namespace SpaceYYZ.Controllers
 			return View();
 		}
 
+		[HttpGet]
+		public async Task<IActionResult> Delete(string id)
+		{
+			if (id != null)
+			{
+				var user = await _userManager.FindByIdAsync(id);
+
+				if (user != null)
+				{
+
+					var model = new DeleteUserViewModel() {
+						Username = user.UserName,
+						Id = id
+					};
+
+					return View(model);
+				}
+			}
+
+			return BadRequest();
+		}
+
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeletePost(string id)
+		{
+			if (id != null)
+			{
+				var user = await _userManager.FindByIdAsync(id);
+
+				if (user != null)
+				{
+					var result = await _userManager.DeleteAsync(user);
+
+					if (result.Succeeded)
+					{
+						return RedirectToAction("Index");
+					}
+				}
+			}
+
+			return BadRequest();
+		}
+
 		private void PrintModelErrors()
 		{
 			foreach(var a in ModelState)
