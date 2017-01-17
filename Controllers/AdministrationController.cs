@@ -26,15 +26,21 @@ namespace SpaceYYZ.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index(string sort)
+		public IActionResult Index(string sort, string search)
 		{
 
 			ViewData["UsernameSort"] = sort == "username" ? "username_desc" : "username"; 
 			ViewData["FirstnameSort"] = sort == "firstname" ? "firstname_desc" : "firstname";
 			ViewData["LastnameSort"] = sort == "lastname" ? "lastname_desc" : "lastname";
 			ViewData["Sort"] = sort;
+			ViewData["PrevSearch"] = search;
 
-			var model = _userManager.Users.Select(u => new UserViewModel() { 
+			var model = _userManager.Users
+				.Where(u => string.IsNullOrEmpty(search)
+						|| u.UserName.Contains(search)
+						|| u.FirstName.Contains(search)
+						|| u.LastName.Contains(search))
+				.Select(u => new UserViewModel() { 
 					Id = u.Id,
 					Username = u.UserName,
 					FirstName = u.FirstName,
@@ -323,6 +329,5 @@ namespace SpaceYYZ.Controllers
 				}
 			}
 		}
-
 	}
 }

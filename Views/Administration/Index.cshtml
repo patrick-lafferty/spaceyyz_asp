@@ -3,39 +3,45 @@
 <h1>Users</h1>
 
 <article>
+	<form asp-action="Index" method="get">
+		<input type="search" placeholder="name" value="@ViewData["PrevSearch"]" name="search"/>
+		<input type="hidden" name="sort" value="@ViewData["Sort"]"/>
+		<button type="submit">Search</button>
+	</form>
 	<table>
-		<tr>
-			@{
-				var getSortGlyph = new Func<string, string>(sort => {
-					var currentSort = ViewData["Sort"] as string;
+		@{
 
-					if (currentSort?.StartsWith(sort) == true)
+
+		var GetSortGlyph = new Func<string, string>(sort =>
+			{
+				var currentSort = ViewData["Sort"] as string;
+
+				if (currentSort?.StartsWith(sort) == true)
+				{
+					if (currentSort.Length == sort.Length)
 					{
-						if (currentSort.Length == sort.Length)
-						{
-							return "^";
-						}
-						else
-						{
-							return "v";
-						}
+						return "^";
 					}
 					else
 					{
-						return "";
+						return "v";
 					}
-
-				});
-
-			}
+				}
+				else
+				{
+					return "";
+				}
+			});
+		}
+		<tr>
 			<th>
-				<a asp-action="Index" asp-route-sort="@ViewData["UsernameSort"]">Username @getSortGlyph("username")</a>
+				<a asp-action="Index" asp-route-sort="@ViewData["UsernameSort"]" asp-route-search="@ViewData["PrevSearch"]">Username @GetSortGlyph("username")</a>
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sort="@ViewData["FirstnameSort"]">First name @getSortGlyph("firstname")</a>
+				<a asp-action="Index" asp-route-sort="@ViewData["FirstnameSort"]" asp-route-search="@ViewData["PrevSearch"]">First name @GetSortGlyph("firstname")</a>
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sort="@ViewData["LastnameSort"]">Last name @getSortGlyph("lastname")</a>
+				<a asp-action="Index" asp-route-sort="@ViewData["LastnameSort"]" asp-route-search="@ViewData["PrevSearch"]">Last name @GetSortGlyph("lastname")</a>
 			</th>
 			<th></th>
 		</tr>
