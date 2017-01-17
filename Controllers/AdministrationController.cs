@@ -26,16 +26,57 @@ namespace SpaceYYZ.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index()
+		public IActionResult Index(string sort)
 		{
+
+			ViewData["UsernameSort"] = sort == "username" ? "username_desc" : "username"; 
+			ViewData["FirstnameSort"] = sort == "firstname" ? "firstname_desc" : "firstname";
+			ViewData["LastnameSort"] = sort == "lastname" ? "lastname_desc" : "lastname";
+			ViewData["Sort"] = sort;
+
 			var model = _userManager.Users.Select(u => new UserViewModel() { 
 					Id = u.Id,
 					Username = u.UserName,
 					FirstName = u.FirstName,
 					LastName = u.LastName,
-					//Roles = u.Roles.Select(r => r.RoleId).Aggregate((acc, r) => acc + r)
 
 					});
+
+			switch(sort)
+			{
+
+				case "username_desc":
+					{
+						model = model.OrderByDescending(u => u.Username);
+						break;
+					}
+				case "firstname":
+					{
+						model = model.OrderBy(u => u.FirstName);
+						break;
+					}
+				case "firstname_desc":
+					{
+						model = model.OrderByDescending(u => u.FirstName);
+						break;
+					}
+				case "lastname":
+					{
+						model = model.OrderBy(u => u.LastName);
+						break;
+					}
+				case "lastname_desc":
+					{
+						model = model.OrderByDescending(u => u.LastName);
+						break;
+					}
+				case "username":
+				default:
+					{
+						model = model.OrderBy(u => u.Username);
+						break;
+					}
+			}
 
 
 			return View(model);

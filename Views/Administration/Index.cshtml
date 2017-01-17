@@ -5,10 +5,38 @@
 <article>
 	<table>
 		<tr>
-			<th>Username</th>
-			<th>First name</th>
-			<th>Last name</ht>
-			<!--<th>Roles</th>-->
+			@{
+				var getSortGlyph = new Func<string, string>(sort => {
+					var currentSort = ViewData["Sort"] as string;
+
+					if (currentSort?.StartsWith(sort) == true)
+					{
+						if (currentSort.Length == sort.Length)
+						{
+							return "^";
+						}
+						else
+						{
+							return "v";
+						}
+					}
+					else
+					{
+						return "";
+					}
+
+				});
+
+			}
+			<th>
+				<a asp-action="Index" asp-route-sort="@ViewData["UsernameSort"]">Username @getSortGlyph("username")</a>
+			</th>
+			<th>
+				<a asp-action="Index" asp-route-sort="@ViewData["FirstnameSort"]">First name @getSortGlyph("firstname")</a>
+			</th>
+			<th>
+				<a asp-action="Index" asp-route-sort="@ViewData["LastnameSort"]">Last name @getSortGlyph("lastname")</a>
+			</th>
 			<th></th>
 		</tr>
 
@@ -18,7 +46,6 @@
 				<td>@user.Username</td>
 				<td>@user.FirstName</td>
 				<td>@user.LastName</td>
-				<!--<td>@user.Roles</td>-->
 				<td>
 					<a asp-action="Details" asp-route-id="@user.Id">View</a> | 
 					<a asp-action="Edit" asp-route-id="@user.Id">Edit</a> |
