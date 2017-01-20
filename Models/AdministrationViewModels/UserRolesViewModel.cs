@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SpaceYYZ.Models.AdministrationViewModels
 {
-	public class RolesViewModel
+	public class UserRolesViewModel
 	{
 		public string Username {get; set;}
 		public string Id {get; set;}

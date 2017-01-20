@@ -15,11 +15,11 @@ namespace SpaceYYZ.Controllers
 	public class AdministrationController : Controller
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
-		private readonly RoleManager<IdentityRole> _roleManager;
+		private readonly RoleManager<ApplicationRole> _roleManager;
 
 		public AdministrationController(
 				UserManager<ApplicationUser> userManager,
-				RoleManager<IdentityRole> roleManager)
+				RoleManager<ApplicationRole> roleManager)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
@@ -229,36 +229,9 @@ namespace SpaceYYZ.Controllers
 			}
 		}
 
-		[HttpGet]
-		public async Task<IActionResult> Roles(string userId)
-		{
-			if (userId == null)
-			{
-				return NotFound();
-			}
-			else
-			{
-				var user = await _userManager.FindByIdAsync(userId);
-
-				var availableRoles = _roleManager.Roles.Select(r => new SelectListItem {
-						Value = r.Name,
-						Text = r.Name
-						}).ToList();
-
-				var model = new RolesViewModel() {
-					Username = user.UserName,
-					Id = userId,
-					NewRole = availableRoles[0].Value,
-					AvailableRoles = availableRoles
-
-				};
-
-				return View(model);
-			}
-		}
 
 		[HttpPost]
-		public async Task<IActionResult> AddRole(RolesViewModel model)
+		public async Task<IActionResult> AddRole(UserRolesViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -318,6 +291,52 @@ namespace SpaceYYZ.Controllers
 						return RedirectToAction("Index");
 					}
 				}
+			}
+
+			return BadRequest();
+		}
+
+		[HttpGet]
+		public IActionResult Roles()
+		{
+
+			var model = _roleManager.Roles.Select(r => new RoleViewModel {
+					Name = r.Name,
+					UsersAssigned = r.Users.Count,
+					Description = r.Description
+					});
+
+			return View(model);
+
+		}
+
+		[HttpGet]
+		public IActionResult CreateRole()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				if (!await _roleManager.RoleExistsAsync(model.Name))
+				{
+					var role = new ApplicationRole() {
+						Name = model.Name,
+						Description = model.Description
+					};
+
+					var result = await _roleManager.CreateAsync(role);
+
+					if (result.Succeeded)
+					{
+						return RedirectToAction("roles");
+					}
+
+				}
+
 			}
 
 			return BadRequest();
