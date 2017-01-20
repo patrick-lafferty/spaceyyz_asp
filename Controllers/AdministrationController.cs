@@ -36,10 +36,6 @@ namespace SpaceYYZ.Controllers
 			ViewData["PrevSearch"] = search;
 
 			var model = _userManager.Users
-				.Where(u => string.IsNullOrEmpty(search)
-						|| u.UserName.Contains(search)
-						|| u.FirstName.Contains(search)
-						|| u.LastName.Contains(search))
 				.Select(u => new UserViewModel() { 
 					Id = u.Id,
 					Username = u.UserName,
@@ -47,6 +43,14 @@ namespace SpaceYYZ.Controllers
 					LastName = u.LastName,
 
 					});
+
+			if (!string.IsNullOrEmpty(search))
+			{
+				model = model.Where(u =>
+						u.Username.Contains(search)
+						|| u.FirstName.Contains(search)
+						|| u.LastName.Contains(search));
+			}
 
 			switch(sort)
 			{
