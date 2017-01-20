@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SpaceYYZ.Data
 {
-	public class ApplicationUserContext : IdentityDbContext<ApplicationUser>
+	public class ApplicationUserContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
 	{
 		public ApplicationUserContext(DbContextOptions<ApplicationUserContext> options)
 			: base(options)

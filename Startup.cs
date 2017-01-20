@@ -38,7 +38,7 @@ namespace SpaceYYZ
 				.AddDbContext<ApplicationUserContext>(options =>
 						options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));*/
 
-			services.AddIdentity<ApplicationUser, IdentityRole>()
+			services.AddIdentity<ApplicationUser, ApplicationRole>()
 				.AddEntityFrameworkStores<ApplicationUserContext>()
 				.AddDefaultTokenProviders();
 
