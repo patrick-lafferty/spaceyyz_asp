@@ -54,6 +54,8 @@ namespace SpaceYYZ
                 app.UseDeveloperExceptionPage();
             }
 
+			app.UseStatusCodePagesWithReExecute("/error/{0}");
+
 			app.UseStaticFiles();
 			app.UseIdentity();
 			

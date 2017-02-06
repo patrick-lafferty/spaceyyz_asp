@@ -20,32 +20,13 @@ namespace SpaceYYZ.Controllers
 		public AccountController(
 				UserManager<ApplicationUser> userManager,
 				SignInManager<ApplicationUser> signInManager,
-				ILoggerFactory loggerFactory,
-				RoleManager<IdentityRole> roleManager)
+				ILoggerFactory loggerFactory)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_logger = loggerFactory.CreateLogger<AccountController>();
-			setup(roleManager);
 		}
 
-		private async Task<IdentityResult> createRole(RoleManager<IdentityRole> roleManager, string name)
-		{
-			if (!await roleManager.RoleExistsAsync(name))
-			{
-				var role = new IdentityRole();
-				role.Name = name;
-				return await roleManager.CreateAsync(role);
-			}
-
-			return new IdentityResult();
-		}
-
-		public async void setup(RoleManager<IdentityRole> roleManager)
-		{
-			//await createRole(roleManager, "Administrator");
-			await createRole(roleManager, "Default");
-		}
 
 		// GET: /Account/Login
 		[HttpGet]
@@ -165,7 +146,7 @@ namespace SpaceYYZ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> AccessDenied()
+		public IActionResult AccessDenied()
 		{
 			return View();
 		}
