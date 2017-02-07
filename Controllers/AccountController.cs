@@ -95,11 +95,8 @@ namespace SpaceYYZ.Controllers
 					LastName = "lastname"
 				};
 				
-				//Microsoft.AspNetCore.Identity.Identit
-
 				var result = await _userManager.CreateAsync(user, model.Password);
 
-				//var roleResult = await _userManager.AddToRoleAsync(user, "Administrator");
 				await _userManager.AddToRoleAsync(user, "Default");
 
 				if (result.Succeeded)

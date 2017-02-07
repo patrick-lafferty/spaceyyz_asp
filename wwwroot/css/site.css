@@ -119,6 +119,10 @@
 	position: relative;
 }
 
+* {
+	line-height: 1.5;
+}
+
 
 /* forms
  * */
@@ -155,9 +159,17 @@ label {
 }
 
 input, select, button {
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-top-left-radius: 7px;
+	border-bottom-right-radius: 11px;
+	border-top-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border: none;
+	padding: 5px;
 	margin-right: 5px;
+}
+
+button {
+	background-color: #52bff3;
 }
 
 /* main header elements
@@ -273,4 +285,39 @@ nav a {
  * */
 a {
 	color: #19b3fe;
+}
+
+
+/* Login/SignedIn
+ * */
+.loginWidget {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-start;
+	height: 120px;
+}
+
+.loginWidgetMenu {
+	display: flex;
+	align-items: center;
+}
+
+.loginWidgetMenu > p:first-child {
+	background-color: #15bff3;
+	color: #354545;
+	padding: 10px;
+	border-radius: 7px 0px 0px 2px;
+}
+
+.loginWidgetMenu > p:last-child {
+	background-color: hsla(180, 65%, 34%, 1);
+	padding: 10px;
+	border-radius: 0px 2px 11px 0px; 
+}
+
+#loginWidgetForms {
+	padding: 10px;
+	border-radius: 7px 2px 11px 2px;
+	background-color: hsla(180, 65%, 34%, 1);
 }
