@@ -6,10 +6,19 @@
 
 			var widget = document.getElementById("loginDropdownWidget");
 			widget.addEventListener("click", function () {
+
 				var forms = document.getElementById("loginWidgetForms");
 				var current = forms.style.visibility;
 
-				forms.style.visibility = current === "visible" ? "collapse" : "visible";
+				if (forms.style.visibility === "visible") {
+					forms.style.visibility = "collapse";
+					this.style.borderBottomRightRadius = "11px";
+				}
+				else {
+					forms.style.visibility = "visible";
+					this.style.borderBottomRightRadius = "0px";
+				}
+
 			}, false);
 		});
 	})();

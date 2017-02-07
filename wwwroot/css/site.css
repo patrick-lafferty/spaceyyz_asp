@@ -321,3 +321,30 @@ a {
 	border-radius: 7px 2px 11px 2px;
 	background-color: hsla(180, 65%, 34%, 1);
 }
+
+
+/* Administration/Users
+ * */
+.searchBar {
+	margin-left: 30px;
+}
+
+table {
+	margin-top: 20px;
+}
+
+th {
+	padding: 10px 30px;
+}
+
+td {
+	padding: 0px 30px;
+}
+
+.numberColumn {
+	text-align: right;
+}
+
+td > a {
+	margin: 10px;
+}

@@ -3,7 +3,7 @@
 <h1>Users</h1>
 
 <article>
-	<form asp-action="Index" method="get">
+	<form asp-action="Index" method="get" class="searchBar">
 		<input type="search" placeholder="name" value="@ViewData["PrevSearch"]" name="search"/>
 		<input type="hidden" name="sort" value="@ViewData["Sort"]"/>
 		<button type="submit">Search</button>
