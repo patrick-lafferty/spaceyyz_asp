@@ -172,6 +172,10 @@ button {
 	background-color: #52bff3;
 }
 
+.input-validation-error {
+	background-color: hsla(335, 10%, 55%, 1);
+}
+
 /* main header elements
  * */
 

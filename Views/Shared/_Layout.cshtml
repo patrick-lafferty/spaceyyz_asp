@@ -23,18 +23,12 @@
 		Func<string, string> getTabClass = tabname => 
 			ViewData["ActiveTab"] == tabname ? "active-tab" : "inactive-tab";
 	}
-<!--
-	<nav>
-		<ul>
-			<li class=@getTabClass("Home")><a asp-controller="Home" asp-action="Index">Home</a></li>
-			<li class=@getTabClass("Schedule")><a asp-controller="Schedule" asp-action="Index">Schedule</a></li>
-		</ul>
-	</nav>
--->
+
 	@await Component.InvokeAsync("Navigation")
 
 	<div class="view">
 		@RenderBody()
 	</div>
+	@RenderSection("scripts", required: false)
 </body>
 </html>

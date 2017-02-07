@@ -13,14 +13,13 @@
 			<div class="form-group">
 				<label asp-for="LastName"></label>
 				<input asp-for="LastName"/>
+				<span asp-validation-for="LastName" class="text-danger"></span>
 			</div>
 
 			<input type="hidden" asp-for="Username"/>
 
 			<button type="submit">Update</button>
 		</form>
-
-		<!--<a asp-action="Roles" method="get" asp-route-id="@Model.Id">Roles</a>-->
 
 	</section>
 
@@ -44,3 +43,8 @@
 		</form>
 	</section>
 </article>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ClientValidationPartial");}
+}
+
