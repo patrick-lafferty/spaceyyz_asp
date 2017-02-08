@@ -1,9 +1,16 @@
 <nav>
 	<ul>
-		<li><a asp-controller="Home" asp-action="Index">Home</a></li>
-		<!--<li><a asp-controller="Administration" asp-action="Index">Administration</a></li>
-		-->
-		<li><a asp-controller="Administration" asp-action="Index">Users</a></li>
-		<li><a asp-controller="Administration" asp-action="Roles">Roles</a></li>
+		<li class="@ViewBag.getTabClass("HomeController.Index")">
+			<svg class="icon"><use xlink:href="#icon-home"></use></svg>
+			<a asp-controller="Home" asp-action="Index">Home</a>
+		</li>
+		<li class="@ViewBag.getTabClass("AdministrationController.Index")">
+			<svg class="icon"><use xlink:href="#icon-group"></use></svg>
+			<a asp-controller="Administration" asp-action="Index">Users</a>
+		</li>
+		<li class="@ViewBag.getTabClass("AdministrationController.Roles")">
+			<svg class="icon"><use xlink:href="#icon-list-alt"></use></svg>
+			<a asp-controller="Administration" asp-action="Roles">Roles</a>
+		</li>
 	</ul>
 </nav>

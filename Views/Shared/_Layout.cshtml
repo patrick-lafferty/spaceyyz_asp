@@ -6,6 +6,8 @@
 	</environment>
 </head>
 <body class="grid">
+	@{Html.RenderPartial("_SvgIconsPartial");}
+
 	<header>
 		<section>
 			<div class="logoSquircle"></div>
@@ -24,11 +26,13 @@
 			ViewData["ActiveTab"] == tabname ? "active-tab" : "inactive-tab";
 	}
 
-	@await Component.InvokeAsync("Navigation")
+	<section style="display: flex">
+		@await Component.InvokeAsync("Navigation")
 
-	<div class="view">
-		@RenderBody()
-	</div>
+		<div class="view">
+			@RenderBody()
+		</div>
+	</section>
 	@RenderSection("scripts", required: false)
 </body>
 </html>

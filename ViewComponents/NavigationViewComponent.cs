@@ -1,6 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using SpaceYYZ.Models;
@@ -23,14 +25,7 @@ namespace SpaceYYZ.ViewComponents
 			 * they have (and is currently active)
 			 * and return the appropriate view
 			 * */
-			/*if (this.User.IsInRole("Administration"))
-			{
-				return View("Administration");
-			}
-			else
-			{
-				return View();
-			}*/
+			ViewBag.getTabClass = new Func<string, string>(GetTabClass); 
 
 			var user = await _userManager.GetUserAsync(this.UserClaimsPrincipal);
 			
@@ -47,7 +42,25 @@ namespace SpaceYYZ.ViewComponents
 				return View();
 			}
 
+		}
 
+		public string GetTabClass(string tabName)
+		{
+			var name = this.ViewContext.ActionDescriptor.DisplayName;		
+
+			var start = 21;
+			var actionName = name.Substring(start, name.Length - 15 - start);
+
+			System.Console.WriteLine("comparing _" + tabName + "_ " + "with _" + actionName + "_");
+
+			if (tabName == actionName)
+			{
+				return "active-tab";
+			}
+			else
+			{
+				return "inactive-tab";
+			}
 		}
 	}
 }

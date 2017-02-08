@@ -119,8 +119,9 @@
 	position: relative;
 }
 
-* {
+html {
 	line-height: 1.5;
+	font-size: 1.25em;
 }
 
 
@@ -237,9 +238,16 @@ html, body {
 
 /* nav elements
  * */
+nav {
+	background-color: hsla(185, 63%, 20%, 1);
+	border-radius: 5px;
+	padding: 10px;
+}
+
 nav > ul {
-	display: flex;
+	/*display: flex;*/
 	list-style: none;
+	fill: #19b3fe;
 	padding: 0px;
 }
 
@@ -248,9 +256,9 @@ nav > ul > li:not(:last-child) {
 }
 
 nav a {
-	border: 3px outset #19b3f3;
+	/*border: 3px outset #19b3f3;
 	border-left: none;
-	border-right: none;
+	border-right: none;*/
 	color: #19b3fe;
 	font-size: 20pt;
 	padding: 0px 10px;
@@ -258,7 +266,16 @@ nav a {
 }
 
 .active-tab {
-	background-color: teal;
+	/*background-color: teal;*/
+	background: linear-gradient(to right, rgba(1,1,1,0), rgba(25, 179, 184, 0.5) 50%, rgba(1,1,1,0));
+}
+
+/* icons
+ * */
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
 }
 
 /* RenderBody() view
@@ -310,11 +327,11 @@ a {
 .loginWidgetMenu > p:first-child {
 	background-color: #15bff3;
 	color: #354545;
-	padding: 10px;
+	padding: 0.25em;
 	border-radius: 7px 0px 0px 2px;
 }
 
-.loginWidgetMenu > p:last-child {
+.loginWidgetMenu > svg:last-child {
 	background-color: hsla(180, 65%, 34%, 1);
 	padding: 10px;
 	border-radius: 0px 2px 11px 0px; 

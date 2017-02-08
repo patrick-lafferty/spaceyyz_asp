@@ -5,6 +5,7 @@
 		<div class="form-group">
 			<label asp-for="Name" class="col-1"></label>
 			<input asp-for="Name"/>
+			<span asp-validation-for="Name" class="invalid-value"></span>
 		</div>
 
 		<div class="form-group">
@@ -15,3 +16,7 @@
 		<button type="submit">Create role</button>
 	</form>
 </section>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ClientValidationPartial");}
+}
