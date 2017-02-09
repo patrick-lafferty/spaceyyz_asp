@@ -177,6 +177,14 @@ button {
 	background-color: hsla(335, 10%, 55%, 1);
 }
 
+dt:not(first-child) {
+	margin-top: 20px;
+}
+
+dd > ul {
+	margin: 0px;
+}
+
 /* main header elements
  * */
 
@@ -240,11 +248,14 @@ html, body {
 	to {transform: rotate(360deg) rotateX(0deg)}
 }
 
+h1 {
+	margin-top: 0px;
+}
+
 /* nav elements
  * */
 nav {
 	background-color: hsla(185, 63%, 20%, 1);
-	border-radius: 5px;
 	padding: 0px 10px;
 }
 
@@ -253,6 +264,7 @@ nav > ul {
 	list-style: none;
 	fill: #19b3fe;
 	padding: 0px;
+	margin-top: 1rem;
 }
 
 nav > ul > li:not(:last-child) { 
@@ -261,10 +273,12 @@ nav > ul > li:not(:last-child) {
 
 .controllerNav {
 	font-size: 1.5em;
+	border-radius: 5px 0px 0px 5px;
 }
 
 .actionNav {
 	font-size: 1em;
+	border-radius: 0px 5px 5px 0px;
 }
 
 nav a {
@@ -275,7 +289,7 @@ nav a {
 
 .active-tab {
 	/*background-color: teal;*/
-	background: linear-gradient(to right, rgba(1,1,1,0), rgba(25, 179, 184, 0.5) 50%, rgba(1,1,1,0));
+	background: linear-gradient(to right, rgba(1,1,1,0), rgba(25, 179, 184, 0.3) 50%, rgba(1,1,1,0));
 }
 
 /* icons
@@ -292,6 +306,7 @@ nav a {
 	/*margin-left: 50px;*/
 	flex: 1 1 auto;
 	padding: 0px 20px;
+	max-width: 800px;
 }
 
 /* Schedule/NewFlight
@@ -361,7 +376,7 @@ a {
 }
 
 table {
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 }
 
 th {
