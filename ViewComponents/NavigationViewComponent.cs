@@ -25,7 +25,8 @@ namespace SpaceYYZ.ViewComponents
 			 * they have (and is currently active)
 			 * and return the appropriate view
 			 * */
-			ViewBag.getTabClass = new Func<string, string>(GetTabClass); 
+			ViewBag.getControllerTabClass = new Func<string, string>(GetControllerTabClass); 
+			ViewBag.getActionTabClass = new Func<string, string>(GetActionTabClass); 
 
 			var user = await _userManager.GetUserAsync(this.UserClaimsPrincipal);
 			
@@ -44,23 +45,59 @@ namespace SpaceYYZ.ViewComponents
 
 		}
 
-		public string GetTabClass(string tabName)
+		public string GetCurrentActionDisplayName()
 		{
-			var name = this.ViewContext.ActionDescriptor.DisplayName;		
-
-			var start = 21;
-			var actionName = name.Substring(start, name.Length - 15 - start);
-
-			System.Console.WriteLine("comparing _" + tabName + "_ " + "with _" + actionName + "_");
-
-			if (tabName == actionName)
+			if (!ViewData.ContainsKey("CurrentActionDisplayName"))
 			{
-				return "active-tab";
+				var name = this.ViewContext.ActionDescriptor.DisplayName;		
+
+				var start = 21; //length of SpaceYYZ.Controllers.
+				var actionName = name.Substring(start, name.Length - 15 - start);  //length of (spaceyyz_asp)
+
+				ViewData["CurrentActionDisplayName"] = actionName;
+				return actionName;
 			}
-			else
+
+			return ViewData["CurrentActionDisplayName"] as string;
+		}
+
+		public string GetCurrentAction()
+		{
+			if (!ViewData.ContainsKey("CurrentAction"))
 			{
-				return "inactive-tab";
+				var displayName = GetCurrentActionDisplayName();
+				displayName = displayName.Substring(displayName.IndexOf(".") + 1);
+				ViewData["CurrentAction"] = displayName;
+				return displayName;
 			}
+
+			return ViewData["CurrentAction"] as string;
+		}
+
+		public string GetCurrentController()
+		{
+			if (!ViewData.ContainsKey("CurrentController"))
+			{
+				var displayName = GetCurrentActionDisplayName();
+				ViewData["CurrentController"] = displayName.Substring(0, displayName.IndexOf("Controller"));
+
+			}
+
+			return ViewData["CurrentController"] as string;
+		}
+
+		public string GetControllerTabClass(string controllerName)
+		{
+			var currentController = GetCurrentController();
+
+			return currentController == controllerName ? "active-tab" : "inactive-tab";
+		}
+
+		public string GetActionTabClass(string actionName)
+		{
+			var currentAction = GetCurrentAction();
+
+			return currentAction == actionName ? "active-tab" : "inactive-tab";
 		}
 	}
 }

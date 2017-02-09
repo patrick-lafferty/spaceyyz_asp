@@ -159,7 +159,7 @@ label {
 	text-align: right;
 }
 
-input, select, button {
+input, select, button, textarea {
 	border-top-left-radius: 7px;
 	border-bottom-right-radius: 11px;
 	border-top-right-radius: 2px;
@@ -202,6 +202,10 @@ html, body {
 	top: -80px;
 }
 
+.tagline {
+	margin: -20px;
+}
+
 .logoSquircle {
 	opacity: 0.4;
 	background: #19b3fe;
@@ -241,7 +245,7 @@ html, body {
 nav {
 	background-color: hsla(185, 63%, 20%, 1);
 	border-radius: 5px;
-	padding: 10px;
+	padding: 0px 10px;
 }
 
 nav > ul {
@@ -255,13 +259,17 @@ nav > ul > li:not(:last-child) {
 	/*margin-right: 10px;*/
 }
 
+.controllerNav {
+	font-size: 1.5em;
+}
+
+.actionNav {
+	font-size: 1em;
+}
+
 nav a {
-	/*border: 3px outset #19b3f3;
-	border-left: none;
-	border-right: none;*/
 	color: #19b3fe;
-	font-size: 20pt;
-	padding: 0px 10px;
+	padding: 0px 5px;
 	text-decoration: none;
 }
 
@@ -281,7 +289,9 @@ nav a {
 /* RenderBody() view
  * */
 .view {
-	margin-left: 50px;
+	/*margin-left: 50px;*/
+	flex: 1 1 auto;
+	padding: 0px 20px;
 }
 
 /* Schedule/NewFlight

@@ -1,16 +1,41 @@
-<nav>
+<nav class="controllerNav">
 	<ul>
-		<li class="@ViewBag.getTabClass("HomeController.Index")">
+		<li class="@ViewBag.getControllerTabClass("Home")">
 			<svg class="icon"><use xlink:href="#icon-home"></use></svg>
 			<a asp-controller="Home" asp-action="Index">Home</a>
 		</li>
-		<li class="@ViewBag.getTabClass("AdministrationController.Index")">
+		<li class="@ViewBag.getControllerTabClass("Administration")">
 			<svg class="icon"><use xlink:href="#icon-group"></use></svg>
 			<a asp-controller="Administration" asp-action="Index">Users</a>
 		</li>
-		<li class="@ViewBag.getTabClass("AdministrationController.Roles")">
+		<li class="@ViewBag.getControllerTabClass("Role")">
 			<svg class="icon"><use xlink:href="#icon-list-alt"></use></svg>
-			<a asp-controller="Administration" asp-action="Roles">Roles</a>
+			<a asp-controller="Role" asp-action="Roles">Roles</a>
 		</li>
 	</ul>
+</nav>
+
+<nav class="actionNav">
+	@if (@ViewBag.CurrentController == "Administration")
+	{
+		<ul>
+			<li class="@ViewBag.getActionTabClass("Index")">
+				list
+			</li>
+			<li>
+				delete
+			</li>
+		</ul>
+	}
+	else if (@ViewBag.CurrentController == "Role")
+	{
+		<ul>
+			<li class="@ViewBag.getActionTabClass("Roles")">
+				<a asp-controller="Role" asp-action="Roles">List</a>
+			</li>
+			<li class="@ViewBag.getActionTabClass("CreateRole")">
+				<a asp-controller="Role" asp-action="CreateRole">Create</a>
+			</li>
+		</ul>
+	}
 </nav>
