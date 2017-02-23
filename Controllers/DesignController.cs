@@ -17,5 +17,11 @@ namespace SpaceYYZ.Controllers
 		{
 			return View();
 		}
+
+		[HttpGet]
+		public IActionResult Engines()
+		{
+			return View();
+		}
 	}
 }

@@ -42,6 +42,9 @@ namespace SpaceYYZ
 				.AddEntityFrameworkStores<ApplicationUserContext>()
 				.AddDefaultTokenProviders();
 
+			services.AddDbContext<DesignContext>(options =>
+					options.UseNpgsql(Configuration.GetConnectionString("DefaultConnectionPostgres")));
+
 			services.AddMvc();
 		}
 

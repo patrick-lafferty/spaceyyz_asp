@@ -25,6 +25,8 @@ namespace SpaceYYZ.Controllers
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_logger = loggerFactory.CreateLogger<AccountController>();
+
+
 		}
 
 
