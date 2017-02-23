@@ -1,0 +1,39 @@
+@model IEnumerable<SpaceYYZ.Models.DesignViewModels.EngineViewModel>
+
+<article>
+
+	<table>
+
+		<tr>
+			<th>
+				<a>Name</a>
+			</th>
+			<th>
+				<a>Thrust (Sea Level)</a>
+			</th>
+			<th>
+				<a>Thrust (Vacuum)</a>
+			</th>
+			<th>
+				<a>Isp (Sea Level)</a>
+			</th>
+			<th>
+				<a>Isp (Vacuum)</a>
+			</th>
+		</tr>
+
+		@foreach(var engine in Model)
+		{
+			<tr>
+				<td>@engine.Name</td>
+				<td>@engine.SeaLevel.Thrust</td>
+				<td>@engine.Vacuum.Thrust</td>
+				<td>@engine.SeaLevel.Isp</td>
+				<td>@engine.Vacuum.Isp</td>
+			</tr>
+		}
+
+	</table>
+
+</article>
+

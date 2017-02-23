@@ -2,7 +2,21 @@
 	<ul>
 		<li class="@ViewBag.getControllerTabClass("Engines")">
 			<svg class="icon"><use xlink:href="#icon-flask"></use></svg>
-			<a asp-controller="Design" asp-action="Engines">Engines</a>
+			<a asp-controller="Engine" asp-action="Index">Engines</a>
 		</li>
 	</ul>
+</nav>
+
+<nav class="actionNav">
+	@if (@ViewBag.CurrentController == "Engine")
+	{
+		<ul>
+			<li>
+				<a asp-controller="Engine" asp-action="Index">List</a>
+			</li>
+			<li>
+				<a asp-controller="Engine" asp-action="Create">Create</a>
+			</li>
+		</ul>
+	}
 </nav>
