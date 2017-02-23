@@ -169,6 +169,24 @@ input, select, button, textarea {
 	margin-right: 5px;
 }
 
+.input-unit {
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	margin-right: 0px;
+}
+
+.unit {
+	border-bottom-right-radius: 11px;
+	border-top-right-radius: 2px;
+	background-color: #52bff3;
+	color: #354545;
+	padding: 0rem 0.2rem;
+}
+
+.form-section {
+	margin: 1rem 0rem;
+}
+
 button {
 	background-color: #52bff3;
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,40 @@ namespace SpaceYYZ.Controllers
 		public IActionResult Create()
 		{
 			return View();
+		}
+
+		// POST: /Engine/Create
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create(EngineViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Add(new Models.Engine() {
+							Name = model.Name,
+							SeaLevel = new Models.Performance() {
+								Isp = model.SeaLevel.Isp,
+								Thrust	= model.SeaLevel.Thrust
+							},
+							Vacuum = new Models.Performance() {
+								Isp = model.Vacuum.Isp,
+								Thrust = model.Vacuum.Thrust
+							}
+						});
+
+					await _context.SaveChangesAsync();
+
+					return RedirectToAction("Index");
+				}
+				catch (DbUpdateException)
+				{
+					ModelState.AddModelError("", "Unable to create new engine");
+				}
+			}
+
+			return View(model);
 		}
 
 		/*

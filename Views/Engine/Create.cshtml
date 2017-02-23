@@ -1,0 +1,48 @@
+@model EngineViewModel
+
+<h1>Create new engine</h1>
+<section>
+	<form asp-controller="Engine" asp-action="Create" method="post">
+		<div class="form-group">
+			<label asp-for="Name" class="col-2"></label>
+			<input type="text" asp-for="Name">
+		</div>
+
+		<section class="form-section">
+			<h1>Sea level performance</h1>
+			<div class="form-group">
+				<label asp-for="SeaLevel.Thrust" class="col-2"></label>
+				<input type="text" asp-for="SeaLevel.Thrust" class="input-unit">
+				<span class="unit">kN</span>
+
+				<label asp-for="SeaLevel.Isp" class="col-2"></label>
+				<input type="text" asp-for="SeaLevel.Isp" class="input-unit">
+				<span class="unit">s</span>
+			</div>
+		</section>
+
+		<section class="form-section">
+			<h1>Vacuum performance</h1>
+			<div class="form-group">
+				<label asp-for="Vacuum.Thrust" class="col-2"></label>
+				<input type="text" asp-for="Vacuum.Thrust" class="input-unit">
+				<span class="unit">kN</span>
+
+				<label asp-for="Vacuum.Isp" class="col-2"></label>
+				<input type="text" asp-for="Vacuum.Isp" class="input-unit">
+				<span class="unit">s</span>
+			</div>
+		</section>
+
+		<section class="form-section">
+			<div class="form-group">
+				<button type="submit" class="offset-col-1 col-2">Create</button>
+			</div>
+		</section>
+
+	</form>
+</section>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ClientValidationPartial");}
+}
