@@ -351,6 +351,16 @@ a {
 	color: #19b3fe;
 }
 
+/* UserWidget
+ * */
+.userWidget {
+	display: flex;
+
+}
+
+.helpWidget {
+}
+
 
 /* Login/SignedIn
  * */

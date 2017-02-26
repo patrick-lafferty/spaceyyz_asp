@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"outDir": "./wwwroot/scripts",
+	   	"allowJs": false,
+		"target": "es5",
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"noImplicitReturns": true,
+		"noEmitOnError": true
+	},
+	"include": [
+		"./scripts/**/*"
+	]
+}
